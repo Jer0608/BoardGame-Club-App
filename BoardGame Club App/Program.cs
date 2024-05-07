@@ -109,21 +109,22 @@ namespace Insurance_App
             List<string> deviceCategories = new List<string> { "Laptops", "Desktops", "other devices such as smartphones" };
             deviceCategories.AsReadOnly();
 
+            //user enters device name
             string deviceName = checkname();
 
-
+            //user enters number of devices
             int numberofdevices = CheckInt("Enter the number of devices:\n", 0, 1000);
 
-
+            //user enters the device cost
             float deviceCost = Checkfloat("Enter the device cost:\n", 1, 5000);
 
-
+            //user enters the device category
             int deviceCategory = CheckInt(GenerateMenu("device category", deviceCategories), 1, 3);
 
 
             Console.WriteLine($"{deviceName}\n");
 
-
+            //calculate the insurance amount
             float insuranceCost = 0;
 
             if (numberofdevices > 5)
@@ -142,9 +143,11 @@ namespace Insurance_App
 
             string id = GenerateID(deviceName, numberofdevices, deviceCost, deviceCategory);
 
+            //Display the device summary
             string deviceSummary = $" ID: {id}\nName: {deviceName} {deviceCategory} {deviceCost} {numberofdevices} {deviceCounter}\n";
             Console.WriteLine($"The total cost for {numberofdevices} x {deviceName} devices is equal to ${insuranceCost}");
 
+            //Calculate device's depreciation: value will reduce by 5% over 6 months
             Console.WriteLine("month\t value loss");
 
             float depreciation = deviceCost;
@@ -181,15 +184,15 @@ namespace Insurance_App
 
             Console.WriteLine($"Category:{deviceCategories[deviceCategory - 1]}");
 
-
+            //Calculate the most expensive device
             Console.WriteLine($"{topDevice} is the most {topexpensiveDevice} expensive device");
 
+            //Display the number of laptops, desktops, and other devices
             Console.WriteLine($" the number of laptops is: {laptopCount}");
             Console.WriteLine($" the number of desktops is: {desktopCount}");
             Console.WriteLine($" the number of other devices is: {otherDevicesCount}");
 
         }
-
 
         static void DisplayErrorMessage(string error)
         {
